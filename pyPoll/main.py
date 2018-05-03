@@ -9,7 +9,7 @@ votorRecords = []
 countyRecords = []
 candidateRecords = []
 
-csv_path = os.path.join('Resources', 'election_data_2.csv')
+csv_path = os.path.join('Resources', 'election_data_1.csv')
 
 with open(csv_path, newline='') as csvfile:
 
@@ -61,7 +61,7 @@ results.append(f"----------------------")
 
 
 
-print(results)
+# print(results)
 
 outfile = os.path.join('output', 'PollResults.txt')
 
