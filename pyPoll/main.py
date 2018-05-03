@@ -9,7 +9,7 @@ voterRecords = []
 countyRecords = []
 candidateRecords = []
 
-csv_path = os.path.join('Resources', 'election_data_1.csv')
+csv_path = os.path.join('Resources', 'election_data_2.csv')
 
 with open(csv_path, newline='') as csvfile:
 
@@ -21,14 +21,21 @@ with open(csv_path, newline='') as csvfile:
         countyRecords.append(row[1])
         candidateRecords.append(row[2])
 
+# list has unique candidates
 candidates = list(set(candidateRecords))
+
+# sort the list
+candidates.sort()
 # print(candidates)   
+
+# create a list with zero votes to each of the candidates
 votes = []
 for candidate in candidates:
     votes.append(0)
 # print(votes)
 
-# for vote in candidateRecords
+# loop thru all the votes and tally the count in the votes list by 
+# incrementing the list position by 1 matching with the candidate
 for vote in candidateRecords:
     # import pdb; pdb.set_trace()
     votes[candidates.index(vote)] += 1
