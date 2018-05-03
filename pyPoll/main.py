@@ -5,7 +5,7 @@ import os
 # Module for reading CSV's
 import csv
 
-votorRecords = []
+voterRecords = []
 countyRecords = []
 candidateRecords = []
 
@@ -17,7 +17,7 @@ with open(csv_path, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     another_line_after_header = next(csvreader)
     for row in csvreader:
-        votorRecords.append(row[0])
+        voterRecords.append(row[0])
         countyRecords.append(row[1])
         candidateRecords.append(row[2])
 
@@ -35,7 +35,7 @@ for vote in candidateRecords:
 
 # print(votes)
 
-print(f"Election Results")
+print(f"\nElection Results")
 print(f"----------------------")
 print(f"Total Votes: {len(candidateRecords)}")
 print(f"----------------------")

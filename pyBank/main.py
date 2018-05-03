@@ -9,7 +9,7 @@ monthRecords = []
 revenueRecords = []
 changeRevenue = []
 
-csv_path = os.path.join('Resources', 'budget_data_2.csv')
+csv_path = os.path.join('Resources', 'budget_data_1.csv')
 
 with open(csv_path, newline='') as csvfile:
 
@@ -27,11 +27,11 @@ for i in range(len(revenueRecords)):
     else:
         changeRevenue.append(0)
 
-print("Financial Analysis")
+print("\nFinancial Analysis")
 print("--------------------------")
-print(f"Total Months {len(monthRecords)} in the list" )    
-print(f"Total Revenue {sum(revenueRecords)} in the list")
-print(f"Average revenue change {round(sum(changeRevenue)/len(changeRevenue),2)}in the list")
+print(f"Total Months: {len(monthRecords)} " )    
+print(f"Total Revenue: {sum(revenueRecords)} ")
+print(f"Average revenue change: {round(sum(changeRevenue)/len(changeRevenue),2)}")
 print(f"Greatest Increase in Revenue: {monthRecords[changeRevenue.index(max(changeRevenue))]} {max(changeRevenue)}") 
 print(f"Greatest Decrease in Revenue: {monthRecords[changeRevenue.index(min(changeRevenue))]} {min(changeRevenue)}")
 
