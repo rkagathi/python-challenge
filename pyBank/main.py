@@ -9,7 +9,18 @@ monthRecords = []
 revenueRecords = []
 changeRevenue = []
 
-csv_path = os.path.join('Resources', 'budget_data_1.csv')
+dir_path = os.path.join('Resources')
+dirList = os.listdir(dir_path)
+for f in dirList:
+    print(f"\t{dirList.index(f)}  : {f}")
+
+loop = True
+
+while loop:    
+    fileChoice = int(input(f"\tPick a file number from above:=> ")  )  
+    if fileChoice >=0 and fileChoice < len(dirList):
+        csv_path = os.path.join('Resources',dirList[fileChoice])
+        loop = False
 
 with open(csv_path, newline='') as csvfile:
 
@@ -27,19 +38,16 @@ for i in range(len(revenueRecords)):
     else:
         changeRevenue.append(0)
 
-print("\nFinancial Analysis")
+print("\n--------------------------")
+print(f"Financial Analysis - {dirList[fileChoice]}")
 print("--------------------------")
 print(f"Total Months: {len(monthRecords)} " )    
 print(f"Total Revenue: {sum(revenueRecords)} ")
 print(f"Average revenue change: {round(sum(changeRevenue)/len(changeRevenue),2)}")
 print(f"Greatest Increase in Revenue: {monthRecords[changeRevenue.index(max(changeRevenue))]} {max(changeRevenue)}") 
-print(f"Greatest Decrease in Revenue: {monthRecords[changeRevenue.index(min(changeRevenue))]} {min(changeRevenue)}")
-
-
+print(f"Greatest Decrease in Revenue: {monthRecords[changeRevenue.index(min(changeRevenue))]} {min(changeRevenue)}\n")
 
 # txtfile.write(changeRevenue)
-
-
 
 # Specify the file to write to
 output_path = os.path.join( "output", "Budget_Financial_Anaysis.txt")

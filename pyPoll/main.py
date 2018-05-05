@@ -8,8 +8,24 @@ import csv
 voterRecords = []
 countyRecords = []
 candidateRecords = []
+# runfile = "election_data_" + input("Enter the filename to run: ") + ".csv"
+# runfile = input("Enter the filename to run: ")
+# if len(runfile) < 1:
+#     runfile = "election_data_1.csv"
+# csv_path = os.path.join('Resources', runfile)
+dir_path = os.path.join('Resources')
+dirList = os.listdir(dir_path)
+for f in dirList:
+    print(f"\t{dirList.index(f)}  : {f}")
 
-csv_path = os.path.join('Resources', 'election_data_2.csv')
+loop = True
+
+while loop:    
+    fileChoice = int(input(f"\tPick a file number from above:=> ")  )  
+    if fileChoice >=0 and fileChoice < len(dirList):
+        csv_path = os.path.join('Resources',dirList[fileChoice])
+        loop = False
+    
 
 with open(csv_path, newline='') as csvfile:
 
@@ -24,7 +40,7 @@ with open(csv_path, newline='') as csvfile:
 # list has unique candidates
 candidates = list(set(candidateRecords))
 
-# sort the list
+# sort the candidates by their names
 candidates.sort()
 # print(candidates)   
 
@@ -35,23 +51,23 @@ for candidate in candidates:
 # print(votes)
 
 # loop thru all the votes and tally the count in the votes list by 
-# incrementing the list position by 1 matching with the candidate
+# incrementing the list value by 1 matching with the candidate
 for vote in candidateRecords:
     # import pdb; pdb.set_trace()
     votes[candidates.index(vote)] += 1
 
 # print(votes)
-
-print(f"\nElection Results")
-print(f"----------------------")
-print(f"Total Votes: {len(candidateRecords)}")
-print(f"----------------------")
+# import pdb; pdb.set_trace()
+print(f"\n\tElection Results")
+print(f"\t----------------------")
+print(f"\tTotal Votes: {len(candidateRecords)}")
+print(f"\t----------------------")
 for candidate in candidates:
-    print(f"{candidate}: {round(votes[candidates.index(candidate)] * 100 /len(candidateRecords),2)}% ({votes[candidates.index(candidate)]})")
+    print(f"\t{candidate}: {round(votes[candidates.index(candidate)] * 100 /len(candidateRecords),2)}% ({votes[candidates.index(candidate)]})")
 
-print(f"----------------------")
-print(f"Winner: {candidates[votes.index(max(votes))]}")
-print(f"----------------------")
+print(f"\t----------------------")
+print(f"\tWinner: {candidates[votes.index(max(votes))]}")
+print(f"\t----------------------")
 
 results = []
 
@@ -65,8 +81,6 @@ for candidate in candidates:
 results.append(f"----------------------")
 results.append(f"Winner: {candidates[votes.index(max(votes))]}")
 results.append(f"----------------------")
-
-
 
 # print(results)
 
